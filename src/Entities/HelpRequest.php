@@ -6,6 +6,7 @@ require_once __DIR__ . '/../Enums/Status.php';
 
 class HelpRequest
 {
+
     private ?int $id;
 
     private string $title;
@@ -20,13 +21,17 @@ class HelpRequest
 
     private ?int $tutorId;
 
+    private ?string $comment;
+
+
     public function __construct(
         ?int $id,
         string $title,
         string $description,
         string $technology,
         int $studentId,
-        ?int $tutorId = null
+        ?int $tutorId = null,
+        ?string $comment = null
     )
     {
 
@@ -42,7 +47,16 @@ class HelpRequest
 
         $this->tutorId = $tutorId;
 
+        $this->comment = $comment;
+
         $this->status = Status::PENDING;
+    }
+
+
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getTitle(): string
@@ -64,4 +78,44 @@ class HelpRequest
     {
         return $this->status;
     }
+
+    public function getStudentId(): int
+    {
+        return $this->studentId;
+    }
+
+    public function getTutorId(): ?int
+    {
+        return $this->tutorId;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+
+
+    public function assignTo(int $tutorId): void
+    {
+
+        if ($this->studentId === $tutorId) {
+
+            throw new Exception(
+                "Vous ne pouvez pas prendre votre propre ticket"
+            );
+        }
+
+        $this->tutorId = $tutorId;
+
+        $this->status = Status::ASSIGNED;
+    }
+
+
+
+    public function resolve(): void
+    {
+        $this->status = Status::RESOLVED;
+    }
+
 }
