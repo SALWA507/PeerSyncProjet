@@ -21,7 +21,9 @@ $user = $stmt->fetch();
 
 if ($user) {
 
-    echo "Connexion réussie";
+    header("Location: ../public/dashboard.php");
+
+exit;
 } else {
 
     echo "Utilisateur introuvable";

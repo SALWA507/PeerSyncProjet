@@ -101,5 +101,15 @@ class HelpRequestRepository
 
         ]);
     }
+    public function findAll(): array
+{
+    $pdo = Database::connect();
+
+    $sql = "SELECT * FROM help_requests ORDER BY id DESC";
+
+    $stmt = $pdo->query($sql);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 }
