@@ -25,8 +25,6 @@ $tickets = $repo->findAll();
 
 <body class="bg-gray-100 min-h-screen">
 
-
-<!-- Navbar -->
 <nav class="bg-indigo-600 shadow-lg">
 
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -42,8 +40,6 @@ $tickets = $repo->findAll();
 
 </nav>
 
-
-<!-- Main -->
 <main class="max-w-7xl mx-auto p-8">
 
     <h2 class="text-4xl font-bold text-gray-800 mb-8">
